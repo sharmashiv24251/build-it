@@ -60,7 +60,7 @@ export const HeroCards = () => {
           <div>
             <Link
               rel="noreferrer noopener"
-              href="#"
+              href="https://www.instagram.com/sharmashiv24251/"
               target="_blank"
               className={buttonVariants({
                 variant: "ghost",
@@ -72,7 +72,7 @@ export const HeroCards = () => {
             </Link>
             <Link
               rel="noreferrer noopener"
-              href="#"
+              href="https://www.instagram.com/sharmashiv24251/"
               target="_blank"
               className={buttonVariants({
                 variant: "ghost",
@@ -93,7 +93,7 @@ export const HeroCards = () => {
 
             <Link
               rel="noreferrer noopener"
-              href="#"
+              href="https://www.instagram.com/sharmashiv24251/"
               target="_blank"
               className={buttonVariants({
                 variant: "ghost",

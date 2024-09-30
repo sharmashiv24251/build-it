@@ -34,12 +34,20 @@ export const Hero = () => {
           <Link
             rel="noreferrer noopener"
             href="/hire-us"
-            target="_blank"
-            className={`w-full md:w-1/3 ${buttonVariants({
+            className={`w-full  md:w-1/3 ${buttonVariants({
               variant: "outline",
             })}`}
           >
             Hire Us For Your Next Project
+          </Link>
+          <Link
+            rel="noreferrer noopener"
+            href="/our-interns"
+            className={`w-full sm:hidden md:w-1/3 ${buttonVariants({
+              variant: "outline",
+            })}`}
+          >
+            View Past Interns{" "}
           </Link>
         </div>
       </div>
