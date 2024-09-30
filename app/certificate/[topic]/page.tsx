@@ -26,12 +26,12 @@ const Page = ({ params }) => {
 
   const getFormattedTopic = (topic) => {
     const topicMap = {
-      "frontend-developer": "Frontend_Development",
-      "backend-developer": "Backend_Development",
-      "java-developer": "Java_Development",
-      "python-developer": "Python_Development",
-      "cpp-developer": "C++_Development",
-      "fullstack-developer": "Fullstack_Development",
+      "frontend-developer": "Frontend Development",
+      "backend-developer": "Backend Development",
+      "java-developer": "Java Development",
+      "python-developer": "Python Development",
+      "cpp-developer": "C++ Development",
+      "fullstack-developer": "Fullstack Development",
     };
     return topicMap[topic] || "Unknown Topic"; // Default case if no match found
   };
@@ -231,7 +231,7 @@ const CertificateComponent = ({ first, last, topic }) => {
           </h1>
           <div className=" h-[125px] w-[129px] absolute top-[470px] left-[806px]">
             <MyQRCode
-              value={`${url}verify?firstname=${first}&lastname=${last}&topic=${topic}`}
+              value={`https://build-it-sigma.vercel.app/verify?firstname=${first}&lastname=${last}&topic=${topic}`}
             />
           </div>
         </div>
