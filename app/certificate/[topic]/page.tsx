@@ -25,6 +25,7 @@ import QRCode from "react-qr-code";
 import { Card } from "@/components/ui/card";
 
 const Page = ({ params }) => {
+  const [submitting, setSubmitting] = useState(false);
   const supabase = createClient(cookieStore);
   const printRef = useRef();
   const { topic } = params; // Access topic from params
@@ -60,6 +61,7 @@ const Page = ({ params }) => {
   const slug = getSlug(topic); // Get formatted topic
 
   const handleSubmit = async (e) => {
+    setSubmitting(true);
     e.preventDefault();
 
     // Add data to Supabase
@@ -70,6 +72,7 @@ const Page = ({ params }) => {
         topic: topic,
       },
     ]);
+    setSubmitting(false);
 
     setDrawerOpen(false); // Close drawer on submit
   };
@@ -195,7 +198,9 @@ const Page = ({ params }) => {
               onChange={(e) => setLastName(e.target.value)}
               required
             />
-            <Button type="submit">Submit</Button>
+            <Button disabled={submitting} type="submit">
+              {submitting ? "Submitting..." : "Submit"}
+            </Button>
           </form>
         </DrawerContent>
       </Drawer>
