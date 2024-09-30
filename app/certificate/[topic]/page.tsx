@@ -147,7 +147,7 @@ const Page = ({ params }) => {
         </html>
       `);
 
-      printWindow.document.close();
+      // printWindow.document.close();
     } else {
       console.error("Element with id 'certificate' not found");
     }
