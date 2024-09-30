@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ArrowRight, BookOpen, Code } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import LoadBtn from "@/components/loadingbtn";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -47,10 +47,7 @@ export default function Page({ params }: { params: { topic: string } }) {
         <h1 className="text-4xl font-extrabold text-primary text-center mb-8 animate-slide-up flex flex-col sm:flex-row items-center justify-center gap-4">
           {course.title}{" "}
           <Link href={`/certificate/${params.topic}`}>
-            <Button size="lg" className="group">
-              Continue
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <LoadBtn arrow>Continue</LoadBtn>
           </Link>
         </h1>
 
