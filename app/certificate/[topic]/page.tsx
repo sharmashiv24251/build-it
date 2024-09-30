@@ -226,7 +226,9 @@ const Page = ({ params }) => {
       )}
       {!firstName && !lastName && (
         <div className="w-full">
-          <h1 className="text-center text-3xl ">Please Enter Name</h1>
+          <h1 className="text-center text-red-400 text-3xl ">
+            Please Enter Name !!!
+          </h1>
           <p className="text-center">hint: click on edit button</p>
         </div>
       )}

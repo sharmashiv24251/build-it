@@ -44,8 +44,14 @@ export default function Page({ params }: { params: { topic: string } }) {
   return (
     <div className="min-h-screen bg-gradient-to-br  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
-        <h1 className="text-4xl font-extrabold text-primary text-center mb-8 animate-slide-up">
-          {course.title}
+        <h1 className="text-4xl font-extrabold text-primary text-center mb-8 animate-slide-up flex flex-col sm:flex-row items-center justify-center gap-4">
+          {course.title}{" "}
+          <Link href={`/certificate/${params.topic}`}>
+            <Button size="lg" className="group">
+              Continue
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </h1>
 
         <Card className="mb-8 bg-muted/15 backdrop-filter backdrop-blur-lg animate-slide-up">
@@ -94,14 +100,7 @@ export default function Page({ params }: { params: { topic: string } }) {
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center animate-slide-up">
-          <Link href={`/certificate/${params.topic}`}>
-            <Button size="lg" className="group">
-              Continue
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </div>
+        <div className="mt-8 flex justify-center animate-slide-up"></div>
       </div>
       <div className="shadow dark:opacity-50"></div>
     </div>
