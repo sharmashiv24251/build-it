@@ -1,4 +1,6 @@
 "use client";
+import { createClient } from "@/utils/supabase/server";
+
 import Image from "next/image";
 import { useRef } from "react";
 import React, { useState } from "react";
@@ -21,9 +23,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import QRCode from "react-qr-code";
 import { Card } from "@/components/ui/card";
-import { supabase } from "@/lib/supabase";
 
 const Page = ({ params }) => {
+  const supabase = createClient(cookieStore);
   const printRef = useRef();
   const { topic } = params; // Access topic from params
   const [drawerOpen, setDrawerOpen] = useState(true); // Initially open
