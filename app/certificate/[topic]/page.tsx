@@ -184,6 +184,10 @@ const Page = ({ params }) => {
         <Card className="p-5 sm:hidden min-h-[300px] flex flex-col items-center justify-center ">
           <h1 className="text-3xl text-primary font-bold">Certificate Ready</h1>
           <p className="mt-3">Click The Button Below to Download</p>
+          <p className="mt-3">
+            Switch to desltop site if having issues downloading your certificate
+            🙏
+          </p>
           <div className="shadow"></div>
         </Card>
         <Button onClick={handlePrint} className="">
