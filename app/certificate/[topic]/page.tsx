@@ -4,6 +4,12 @@ import { useRef } from "react";
 import React, { useState } from "react";
 
 import certificate from "@/assets/certificate.png";
+interface Certificate {
+  id: number;
+  firstname: string;
+  lastname: string;
+  topic: string;
+}
 import {
   Drawer,
   DrawerContent,
@@ -15,8 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import QRCode from "react-qr-code";
 import { Card } from "@/components/ui/card";
-
-const url = process.env.NEXT_PUBLIC_URL;
+import { supabase } from "@/lib/supabase";
 
 const Page = ({ params }) => {
   const printRef = useRef();
@@ -52,8 +57,18 @@ const Page = ({ params }) => {
   const formattedTopic = getFormattedTopic(topic); // Get formatted topic
   const slug = getSlug(topic); // Get formatted topic
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Add data to Supabase
+    const { data, error } = await supabase.from("Certificate").insert([
+      {
+        first_name: firstName,
+        last_name: lastName,
+        topic: topic,
+      },
+    ]);
+
     setDrawerOpen(false); // Close drawer on submit
   };
   const handlePrint = () => {
