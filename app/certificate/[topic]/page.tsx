@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import React, { useState } from "react";
+
 import certificate from "@/assets/certificate.png";
 import {
   Drawer,
@@ -83,8 +84,8 @@ const Page = ({ params }) => {
             <title>Download Certificate</title>
             <style>
               ${styles}
-              body { 
-                margin: 0; 
+              body {
+                margin: 0;
                 padding: 0;
                 width: 100%;
                 height: 100%;
@@ -94,12 +95,12 @@ const Page = ({ params }) => {
                 margin: 0;
               }
               @media print {
-                body { 
+                body {
                   -webkit-print-color-adjust: exact;
                 }
-                img { 
-                  max-width: 100%; 
-                  height: auto; 
+                img {
+                  max-width: 100%;
+                  height: auto;
                 }
                 #certificate-container {
                   width: 100%;
@@ -109,9 +110,9 @@ const Page = ({ params }) => {
                   align-items: center;
                 }
               }
-              #certificate-container { 
-                width: 1000px; 
-                height: 706px; 
+              #certificate-container {
+                width: 1000px;
+                height: 706px;
                 position: relative;
                 margin: auto;
               }
@@ -132,7 +133,7 @@ const Page = ({ params }) => {
                   }
                 });
               }
-  
+
               const images = Array.from(document.images);
               Promise.all(images.map(loadImage))
                 .then(() => {
@@ -147,11 +148,12 @@ const Page = ({ params }) => {
         </html>
       `);
 
-      // printWindow.document.close();
+      printWindow.document.close();
     } else {
       console.error("Element with id 'certificate' not found");
     }
   };
+
   return (
     <div>
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
@@ -184,25 +186,19 @@ const Page = ({ params }) => {
         <Card className="p-5 sm:hidden min-h-[300px] flex flex-col items-center justify-center ">
           <h1 className="text-3xl text-primary font-bold">Certificate Ready</h1>
           <p className="mt-3">Click The Button Below to Download</p>
-          <p className="mt-3">
+          <p className="mt-3 text-center">
             Switch to desltop site if having issues downloading your certificate
             🙏
           </p>
           <div className="shadow"></div>
         </Card>
-        <Button onClick={handlePrint} className="">
-          Download
-        </Button>
+        <Button onClick={handlePrint}>Download</Button>
         <Button onClick={() => setDrawerOpen(true)} className="">
           Edit
         </Button>
       </div>
       {firstName && lastName && (
-        <div
-          ref={printRef}
-          id="certificate"
-          className="hidden sm:block container"
-        >
+        <div ref={printRef} className=" container">
           <CertificateComponent
             first={firstName}
             last={lastName}
@@ -223,38 +219,39 @@ const Page = ({ params }) => {
 
 const CertificateComponent = ({ first, last, topic, slug }) => {
   return (
-    <>
-      <div className="relative h-[706px] w-[1000px] sm:scale-[1] scale-[0.45] left-[-350px] top-[-200px] sm:top-0 sm:left-0">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={certificate}
-            layout="fill"
-            objectFit="cover"
-            alt="Certificate Background"
+    <div
+      id="certificate"
+      className="relative h-[706px] w-[1000px] sm:scale-[1] scale-[0.4] left-[-310px] top-[-200px] sm:top-0  sm:left-0"
+    >
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={certificate}
+          layout="fill"
+          objectFit="cover"
+          alt="Certificate Background"
+        />
+      </div>
+      <div className="relative z-10 flex flex-col items-center justify-center h-full ">
+        <h1 className="text-6xl font-extrabold text-[#1c498e] absolute top-[180px] left-[390px] dancing-script ">
+          {first.charAt(0).toUpperCase() + first.slice(1).toLowerCase()}{" "}
+          {last.charAt(0).toUpperCase() + last.slice(1).toLowerCase()}
+        </h1>
+        <h1 className="text-4xl font-extrabold text-[#1c498e] absolute top-[371px] left-[430px] marcellus-regular ">
+          {topic}
+        </h1>
+        <h1 className="text-xs opacity-80 text-[black] absolute top-[613px] left-[390px] marcellus-regular ">
+          {Math.floor(10000000000 + Math.random() * 90000000000)}
+        </h1>
+        <h1 className="text-xs opacity-80 text-[black] absolute top-[613px] left-[607px] marcellus-regular ">
+          {new Date().toLocaleDateString()}
+        </h1>
+        <div className=" h-[125px] w-[129px] absolute top-[470px] left-[806px]">
+          <MyQRCode
+            value={`https://build-it-sigma.vercel.app/verify?firstname=${first}&lastname=${last}&topic=${slug}`}
           />
         </div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full ">
-          <h1 className="text-6xl font-extrabold text-[#1c498e] absolute top-[180px] left-[390px] dancing-script ">
-            {first.charAt(0).toUpperCase() + first.slice(1).toLowerCase()}{" "}
-            {last.charAt(0).toUpperCase() + last.slice(1).toLowerCase()}
-          </h1>
-          <h1 className="text-4xl font-extrabold text-[#1c498e] absolute top-[371px] left-[430px] marcellus-regular ">
-            {topic}
-          </h1>
-          <h1 className="text-xs opacity-80 text-[black] absolute top-[613px] left-[390px] marcellus-regular ">
-            {Math.floor(10000000000 + Math.random() * 90000000000)}
-          </h1>
-          <h1 className="text-xs opacity-80 text-[black] absolute top-[613px] left-[607px] marcellus-regular ">
-            {new Date().toLocaleDateString()}
-          </h1>
-          <div className=" h-[125px] w-[129px] absolute top-[470px] left-[806px]">
-            <MyQRCode
-              value={`https://build-it-sigma.vercel.app/verify?firstname=${first}&lastname=${last}&topic=${slug}`}
-            />
-          </div>
-        </div>
       </div>
-    </>
+    </div>
   );
 };
 
