@@ -155,7 +155,7 @@ const Page = ({ params }) => {
   return (
     <div>
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-        <DrawerContent className="min-h-[600px] sm:min-h-[300px] container flex flex-col">
+        <DrawerContent className="min-h-[300px] container flex flex-col">
           <DrawerHeader>
             <DrawerTitle>Certificate Information</DrawerTitle>
             <DrawerDescription>Fill in the details below</DrawerDescription>
