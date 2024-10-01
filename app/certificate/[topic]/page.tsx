@@ -1,5 +1,5 @@
 "use client";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/client";
 
 import Image from "next/image";
 import { useRef } from "react";
@@ -26,7 +26,7 @@ import { Card } from "@/components/ui/card";
 
 const Page = ({ params }) => {
   const [submitting, setSubmitting] = useState(false);
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
   const printRef = useRef();
   const { topic } = params; // Access topic from params
   const [drawerOpen, setDrawerOpen] = useState(true); // Initially open
